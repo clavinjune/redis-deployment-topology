@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+    midgard:
+        container_name: midgard
+        image: redis:7.0.5-alpine3.17
+        volumes:
+        - ./config/midgard:/etc/redis:ro
+        command:
+        - redis-server
+        - /etc/redis/core.conf
+    midgard-r1:
+        container_name: midgard-r1
+        image: redis:7.0.5-alpine3.17
+        depends_on:
+        - midgard
+        volumes:
+        - ./config/midgard-replica:/etc/redis:ro
+        command:
+        - redis-server
+        - /etc/redis/core.conf
+    midgard-r2:
+        container_name: midgard-r2
+        image: redis:7.0.5-alpine3.17
+        depends_on:
+        - midgard
+        volumes:
+        - ./config/midgard-replica:/etc/redis:ro
+        command:
+        - redis-server
+        - /etc/redis/core.conf
+    bifrost:
+        container_name: bifrost
+        image: redis:7.0.5-alpine3.17
+        stdin_open: true
+        tty: true
+        command: 'sh'

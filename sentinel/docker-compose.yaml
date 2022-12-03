@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+    heimdall:
+        container_name: heimdall
+        image: redis:7.0.5-alpine3.17
+        volumes:
+        - ./config/heimdall:/etc/redis:rw
+        command:
+        - redis-sentinel
+        - /etc/redis/redis.conf
+    midgard:
+        container_name: midgard
+        image: redis:7.0.5-alpine3.17
+        volumes:
+        - ./config/midgard:/etc/redis:rw
+        command:
+        - redis-server
+        - /etc/redis/redis.conf
+    midgard-r1:
+        container_name: midgard-r1
+        image: redis:7.0.5-alpine3.17
+        depends_on:
+        - midgard
+        volumes:
+        - ./config/midgard-replica:/etc/redis:rw
+        command:
+        - redis-server
+        - /etc/redis/r1.conf
+    midgard-r2:
+        container_name: midgard-r2
+        image: redis:7.0.5-alpine3.17
+        depends_on:
+        - midgard
+        volumes:
+        - ./config/midgard-replica:/etc/redis:rw
+        command:
+        - redis-server
+        - /etc/redis/r2.conf
+    bifrost:
+        container_name: bifrost
+        image: redis:7.0.5-alpine3.17
+        stdin_open: true
+        tty: true
+        command: 'sh'
