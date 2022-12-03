@@ -2,6 +2,8 @@
 
 [main resource](https://redis.io/docs/management/sentinel/)
 
+[![diagram](./diagram.png)](./diagram.png)
+
 This is Redis Replication with Heimdall.
 
 Heimdall will regenerate all the config of the nodes,

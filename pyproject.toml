@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "redis-deployment-topology"
+version = "0.1.0"
+description = "This repository is my notes on how to learning Redis deployment topology"
+authors = ["clavinjune <24659468+clavinjune@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "redis_deployment_topology"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+diagrams = "^0.23.1"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^3.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

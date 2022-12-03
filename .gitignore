@@ -1,3 +1,5 @@
+.ipynb_checkpoints
+
 # exclude all core config except core.conf
 **/config/**/*.conf
 !**/config/**/core.conf

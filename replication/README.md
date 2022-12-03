@@ -1,5 +1,7 @@
 # Redis Replication
 
+[![diagram](./diagram.png)](./diagram.png)
+
 ## Run All Redis
 
 ```shell
